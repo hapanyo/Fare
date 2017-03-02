@@ -1,11 +1,53 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/fare.js" type="text/javascript"></script>
 </head>
 <body>
-    <div>
+    <h2>Cab Fare</h2>
+    <div ng-app="fareApp">
+
+        <div id="container" ng-controller="fareController">
+            <div style="margin-left: 33%; margin-right: 33%">
+                <form name="meterForm" novalidate class="app-form" ng-submit="processForm()">
+                    <label>Pick a State: </label>
+                    <input type="radio" name="state" ng-model="ride.state" value="NewJersey" id="state-nj" /><label for"state-nj">New Jersey</label>
+                    <input type="radio" name="state" ng-model="ride.state" value="NewYork" id="state-nj" /><label for"state-ny">New York</label>
+                    <input type="radio" name="state" ng-model="ride.state" value="Connecticut" id="state-nj" /><label for"state-ct">Connecticut</label>
+
+                    <label>Number of Miles when going below 6 mph</label>
+                    <input type="number" name="miles" ng-model="ride.miles" required />
+                    <span class="error" ng-show="meterForm.miles.$dirty && meterForm.miles.$error.required">
+                        *required
+                    </span>
+                    <br>
+                    <label>Number of Minutes when idling or going above 6 mph</label>
+                    <div numbervalidate name="minutes" ng-model="ride.minutes"></div>
+                    <span class="error" ng-show="meterForm.minutes.$error.number"> only numbers!</span>
+                    <br />
+                    <label>Start Date</label>
+                    <input type="date" name="startdate" ng-model="ride.startdate" required />
+                    <span class="error" ng-show="meterForm.startdate.$dirty && meterForm.startdate.$error.required">*required</span>
+                    <span class="error" ng-show="meterForm.startdate.$error.date">Not a valid date!</span>
+                    <br />
+                    <label>Start Time</label>
+                    <input type="time" name="starttime" ng-model="ride.starttime" required />
+                    <span class="error" ng-show="meterForm.starttime.$dirty && meterForm.starttime.$error.required">*required</span>
+                    <br />
+
+                    <button type="submit" ng-disabled="!meterForm.$valid">Calculate</button>
+
+                </form>
+
+                <div ng-show="cost">Cost: ${{cost}}</div>
+
+            </div>
+        </div>
+
     </div>
+
 </body>
 </html>
