@@ -1,7 +1,7 @@
 ﻿using Fare.Models.Interfaces;
 using System;
 
-namespace Fare.Models
+namespace Fare.Models.Cost
 {
     public static class CostFactory
     {
@@ -10,7 +10,7 @@ namespace Fare.Models
             switch (state)
             {
                 case States.NewYork:
-                    return new NYCost();
+                    return new NewYorkCost();
                 case States.Other:
                 default:
                     return new OtherCost();

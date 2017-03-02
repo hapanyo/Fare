@@ -5,7 +5,7 @@ fareApp.factory('rideService', ['$http', function ($http) {
         getFare: function (ride) {
             return $http({
                 method: 'POST',
-                url: '/api/fareService/calculate',
+                url: '/api/FareService/CalculateFarePrice',
                 data: $.param(ride),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -13,20 +13,18 @@ fareApp.factory('rideService', ['$http', function ($http) {
     }
 }]);
 
-fareApp.directive('numCheck', function () {
+fareApp.directive('numValid', function () {
     return {
-        restrict: 'E',
+        restrict: 'A',
         require: 'ngModel',
-        template: '<input type="text" />',
+        template: '<input type="number" class="form-control" style="max-width:325px;"/>',
         replace: true,
         link: function (scope, element, attr, ctrl) {
 
             ctrl.$parsers.push(function (value) {
-                //regex from angular source
-                var NUM_REGEX = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/;
-                var validity = NUM_REGEX.test(value);
-                ctrl.$setValidity('number', validity);
-                return validity ? value : undefined;
+                var isValid = value >= 0;
+                ctrl.$setValidity('postive', isValid);
+                return isValid ? value : undefined;
             });
 
 
@@ -37,16 +35,17 @@ fareApp.directive('numCheck', function () {
 fareApp.controller('fareController', ['$scope', 'rideService', function ($scope, rideService) {
     $scope.processForm = function () {
         var ride = {
-            miles: $scope.ride.miles,
-            minutes: $scope.ride.minutes,
-            startdatetime:
+            Miles: $scope.ride.miles,
+            Minutes: $scope.ride.minutes,
+            StartDateTime:
                 new Date(
                     $scope.ride.startdate.getYear(),
                     $scope.ride.startdate.getMonth(),
                     $scope.ride.startdate.getDate(),
                     $scope.ride.starttime.getHours(),
                     $scope.ride.starttime.getMinutes())
-                .toUTCString()
+                .toUTCString(),
+            State: $scope.ride.state
         };
         console.log(ride);
         rideService.getFare(ride).then(function (data) {

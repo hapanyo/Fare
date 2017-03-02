@@ -13,7 +13,7 @@ namespace Fare.Controllers
         /// <summary>
         /// DI calculator constructor for Fare Service
         /// </summary>
-        /// <param name="fareCalculator"></param>
+        /// <param name="calc"></param>
         public FareServiceController(ICalculator calc)
         {
             this.calc = calc;

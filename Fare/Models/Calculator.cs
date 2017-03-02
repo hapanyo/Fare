@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Fare.Models.Cost;
 using Fare.Models.Interfaces;
 using Fare.Models.Extensions;
 

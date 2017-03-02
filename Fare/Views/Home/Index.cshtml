@@ -11,31 +11,45 @@
     <div id="container" class="container" ng-controller="fareController">
         <h2>Cab Fare</h2>
         <form name="fareform" novalidate class="app-form" ng-submit="processForm()">
-            <div class="row">
-                <label>Start Date</label>
-                <input type="date" name="startdate" ng-model="ride.startdate" required />
-                <span class="error" ng-show="fareform.startdate.$dirty && fareform.startdate.$error.required">*</span>
-                <span class="error" ng-show="fareform.startdate.$error.date">Invalid date</span>
+            <div class="form-group">                
+                <label for="startdate1">Start Date</label>
+                <input type="date" class="form-control" id="startdate1" style="max-width: 500px;" name="startdate" ng-model="ride.startdate" required />
+                <span ng-show="fareform.startdate.$dirty && fareform.startdate.$error.required">*</span>
+                <small id="emailHelp" class="form-text text-muted" ng-show="fareform.startdate.$error.date">Invalid date.</small>
             </div>
-            <label>Start Time</label>
-            <input type="time" name="starttime" ng-model="ride.starttime" required/>
-            <span class="error" ng-show="fareform.starttime.$dirty && fareform.starttime.$error.required">*</span>
-            <br/>
-            <label>State: </label>
-            <input type="radio" name="state" ng-model="ride.state" value="NewYork"/><label>New York</label>
-            <input type="radio" name="state" ng-model="ride.state" value="Other"/><label>Other</label>
-            <label>Number of Miles when going below 6 mph</label>
-            <input type="number" name="miles" ng-model="ride.miles" required/>
-            <span class="error" ng-show="fareform.miles.$dirty && meterForm.miles.$error.required">
-                </span>
-            <br>
-            <label>Number of Minutes when idling or going above 6 mph</label>
-            <div numbervalidate name="minutes" ng-model="ride.minutes"></div>
-            <span class="error" ng-show="meterForm.minutes.$error.number"> only numbers!</span>
-            <br/>
-            <button type="submit" ng-disabled="!fareform.$valid">Calculate</button>
+            <div class="form-group">
+                <label for="starttime1">Start Time</label>
+                <input id="starttime1" type="time" class="form-control" style="max-width: 500px;" name="starttime" ng-model="ride.starttime" required/>
+                <span ng-show="fareform.starttime.$dirty && fareform.starttime.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label for="travel1">Miles traveled below 6mph</label>&nbsp;&nbsp;
+                <input type="number" id="travel1" class="form-control" style="max-width:325px;" name="travel1" ng-model="ride.miles" required/>
+                <small ng-show="fareform.miles.$dirty && meterForm.miles.$error.required">Required</small>
+            </div>
+            <div class="form-group">
+                <label>Number of Minutes going above 6 mph or idle</label>
+                <div num-valid name="minutes" ng-model="ride.minutes"></div>
+                <small class="form-text" ng-show="fareform.minutes.$error.postive">Invalid input</small>
+            </div>
+            <fieldset class="form-group">
+                <label>State</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" ng-model="ride.state" name="stateRadios" id="stateRadios1" value="NewYork" ng-checked="true">
+                        New York
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" ng-model="ride.state" name="stateRadios" id="stateRadios2" value="Other">
+                        Other
+                    </label>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary" ng-disabled="!fareform.$valid">Submit</button>
         </form>
-        <div ng-show="cost">Cost: ${{cost}}</div>
+        <div style="padding-top: 10px;" ng-show="cost">Total: ${{cost}}</div>
     </div>
 
 </div>

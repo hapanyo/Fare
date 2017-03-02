@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Fare.Models.Interfaces;
 
-namespace Fare.Models
+namespace Fare.Models.Cost
 {
     public class OtherCost : ICost
     {
