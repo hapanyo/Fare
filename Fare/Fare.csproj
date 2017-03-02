@@ -179,7 +179,6 @@
     </Compile>
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Cost\CostFactory.cs" />
-    <Compile Include="Models\Cost\DummyCost.cs" />
     <Compile Include="Models\Extensions\DateTimeExtension.cs" />
     <Compile Include="Models\Interfaces\ICalculator.cs" />
     <Compile Include="Models\Interfaces\ICost.cs" />

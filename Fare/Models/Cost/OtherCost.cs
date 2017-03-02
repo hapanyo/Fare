@@ -8,60 +8,18 @@ namespace Fare.Models.Cost
 {
     public class OtherCost : ICost
     {
-        public decimal BaseFee
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal BaseFee => 3.00m;
 
-        public decimal NightTimeRate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal PerDistance => 0.2m;
 
-        public decimal PeakCost
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal PerMinute => 1;
 
-        public decimal PerDistance
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal NightTimeRate => 0.50m;
 
-        public decimal PerMinute
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal PeakCost => 1.00m;
 
-        public decimal Rate
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal Rate => 0.35m;
 
-        public decimal Tax
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public decimal Tax => 0.75m;
     }
 }

@@ -33,7 +33,7 @@ fareApp.directive('numValid', function () {
 });
 
 fareApp.controller('fareController', ['$scope', 'rideService', function ($scope, rideService) {
-    $scope.processForm = function () {
+    $scope.submit = function () {
         var ride = {
             Miles: $scope.ride.miles,
             Minutes: $scope.ride.minutes,
@@ -47,11 +47,9 @@ fareApp.controller('fareController', ['$scope', 'rideService', function ($scope,
                 .toUTCString(),
             State: $scope.ride.state
         };
-        console.log(ride);
-        rideService.getFare(ride).then(function (data) {
-            $scope.cost = data.data.cost.toFixed(2);
+        rideService.getFare(ride).then(function (resp) {
+            $scope.cost = resp.data.cost.toFixed(2);
         }, function (data) {
-            console.log(data);
             console.error(data);
         });
 

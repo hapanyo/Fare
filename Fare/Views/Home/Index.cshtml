@@ -10,17 +10,17 @@
 <div ng-app="fareApp">
     <div id="container" class="container" ng-controller="fareController">
         <h2>Cab Fare</h2>
-        <form name="fareform" novalidate class="app-form" ng-submit="processForm()">
+        <form name="fareform" novalidate class="app-form" ng-submit="submit()">
             <div class="form-group">                
                 <label for="startdate1">Start Date</label>
                 <input type="date" class="form-control" id="startdate1" style="max-width: 500px;" name="startdate" ng-model="ride.startdate" required />
-                <span ng-show="fareform.startdate.$dirty && fareform.startdate.$error.required">*</span>
+                <span ng-show="fareform.startdate.$dirty && fareform.startdate.$error.required">Required</span>
                 <small id="emailHelp" class="form-text text-muted" ng-show="fareform.startdate.$error.date">Invalid date.</small>
             </div>
             <div class="form-group">
                 <label for="starttime1">Start Time</label>
                 <input id="starttime1" type="time" class="form-control" style="max-width: 500px;" name="starttime" ng-model="ride.starttime" required/>
-                <span ng-show="fareform.starttime.$dirty && fareform.starttime.$error.required">*</span>
+                <span ng-show="fareform.starttime.$dirty && fareform.starttime.$error.required">Required</span>
             </div>
             <div class="form-group">
                 <label for="travel1">Miles traveled below 6mph</label>&nbsp;&nbsp;
