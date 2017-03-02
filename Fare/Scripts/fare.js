@@ -13,7 +13,7 @@ fareApp.factory('rideService', ['$http', function ($http) {
     }
 }]);
 
-far.directive('numCheck', function () {
+fareApp.directive('numCheck', function () {
     return {
         restrict: 'E',
         require: 'ngModel',
@@ -34,8 +34,7 @@ far.directive('numCheck', function () {
     }
 });
 
-function fareController($scope, rideService) {
-
+fareApp.controller('fareController', ['$scope', 'rideService', function ($scope, rideService) {
     $scope.processForm = function () {
         var ride = {
             miles: $scope.ride.miles,
@@ -58,6 +57,4 @@ function fareController($scope, rideService) {
         });
 
     };
-
-}
-
+}]);
